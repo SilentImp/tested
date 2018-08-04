@@ -25,19 +25,19 @@ Let’s talk a little more about focusing on interactivity via TTI.
 
 Optimizing for interactivity means making the app usable for users as soon as possible (i.e enabling them to click around and have the app react). This is critical for modern web experiences trying to provide first-class user experiences on mobile.
 
-![](image-2)
+![][image-2]
 
 Lighthouse currently expresses TTI as a measure of when layout has stabilized, web fonts are visible and the main thread is available enough to handle user input. There are many ways of tracking TTI manually and what’s important is optimising for metrics that result in experience improvements for your users.
 
 For libraries like React, you should be concerned by the [cost of booting up the library](8) on mobile as this can catch folks out. In [ReactHN](9), we accomplished interactivity in under **1700ms** by keeping the size and execution cost of the overall app relatively small despite having multiple views: 11KB gzipped for our app bundle and 107KB for our vendor/React/libraries bundle which looks a little like this in practice:
 
-![](image-3)
+![][image-3]
 
 Later, for apps with granular functionality, we’ll look at performance patterns like [PRPL](10) which nail fast time-to-interactivity through granular “route-based chunking” while taking advantage of [HTTP/2 Server Push](11) (try the [Shop](12) demo to see what we mean).
 
 Housing.com recently shipped a React experience using a PRPL-like pattern to much praise:
 
-![](image-4)
+![][image-4]
 
 Housing.com took advantage of Webpack route-chunking to defer some of the bootup cost of entry pages (loading only what is needed for a route to render). For more detail see [Sam Saccone’s excellent Housing.com perf audit](13).
 
@@ -51,13 +51,13 @@ _If you’re new to module bundling tools like Webpack,_ [_JS module bundlers_](
 
 Some of today’s JavaScript tooling makes it easy to bundle all of your scripts into a single bundle.js file that gets included in all pages.This means that a lot of the time, you’re likely loading a lot of code that isn’t required at all for the current route. Why load up 500KB of JS for a route when only 50KB will do? We should be throwing out script that isn’t conducive to shipping a fast experience for booting up a route with interactivity
 
-![](image-5)
+![][image-5]
 
 _Avoid serving large, monolithic bundles (like above) when just serving the minimum functionally viable code a user actually needs for a route will do._
 
 Code-splitting is one answer to the problem of monolithic bundles. It’s the idea that by defining split-points in your code, it can be split into different files that are lazy loaded on demand. This improves startup time and help us get to being interactive sooner.
 
-![](image-6)
+![][image-6]
 
 Imagine using an apartment listings app. If we land on a route listing the properties in our area (route-1) — we don’t need the code for viewing the full details for a property (route-2) or scheduling a tour (route-3), so we can serve users just the JavaScript needed for the listings route and dynamically load the rest.
 
@@ -103,7 +103,7 @@ export default {
 
 Before we continue, one optional addition to your setup is [<link rel=”preload”>](22) from [Resource Hints](23). This gives us a way to declaratively fetch resources without executing them. Preload can be leveraged for preloading Webpack chunks for routes users _are likely_ to navigate to so the cache is already primed with them and they’re instantly available for instantiation.
 
-![](image-7)
+![][image-7]
 
 At the time of writing, preload is only implemented in [Chrome](24), but can be treated as a progressive enhancement for browsers that do support it.
 
@@ -206,18 +206,18 @@ And update it with some declarative getComponent goodness. We’ve got our requi
 
 OMG beautiful. And..that’s it. Seriously. We can apply this to the rest of our routes and run webpack. It will correctly find the require.ensure() calls and split our code as we intended.
 
-![](image-8)
+![][image-8]
 
 After applying declarative code-splitting to many more of our routes we can see our route-chunking in action, only loading up the code needed for a route (which we can precache in Service Worker) as needed:
 
-![](image-9)
+![][image-9]
 
 Reminder: A number of drop-in Webpack plugins for Service Worker caching are available:
 
 *   [sw-precache-webpack-plugin](36) which uses sw-precache under the hood
 *   [offline-plugin](37) which is used by react-boilerplate
 
-![](image-10)
+![][image-10]
 
 To identify common modules used across different routes and put them in a commons chunk, use the [CommonsChunkPlugin](38). It requires two script tags to be used per page, one for the commons chunk and one for the entry chunk for a route.
 
@@ -238,7 +238,7 @@ module.exports = {
 
 The Webpack [— display-chunks flag](39) is useful for seeing what modules occur in which chunks. This helps narrow down what dependencies are being duplicated in chunks and can hint at whether or not it’s worth enabling the CommonChunksPlugin in your project. Here’s a project with multiple components that detected a duplicate Mustache.js dependency between different chunks:
 
-![](image-11)
+![][image-11]
 
 Webpack 1 also supports deduplication of libraries in your dependency trees using the [DedupePlugin](40). In Webpack 2, tree-shaking should mostly eliminate the need for this.
 
@@ -257,7 +257,7 @@ The Webpack community have many web-established analysers for builds including [
 
 [**source-map-explorer**](53) (via Paul Irish) is also _fantastic_ for understanding code bloat through source maps. Look at this tree-map visualisation with per-file LOC and % breakdowns for the ReactHN Webpack bundle:
 
-![](image-12)
+![][image-12]
 
 You might also be interested in [**coverage-ext**](54) by Sam Saccone for generating code coverage for any webapp. This is useful for understanding how much code of the code you’re shipping down is actually being executed.
 
@@ -268,7 +268,7 @@ Polymer discovered an interesting web performance pattern for granularly serving
 *   (P)re-cache the remaining routes using Service Worker
 *   (L)azy-load and lazily instantiate parts of the app as the user moves through the application
 
-![](image-13)
+![][image-13]
 
 We have to give great kudos here to the [Polymer Shop demo](57) for showing us the way on real mobile devices. Using PRPL (in this case with HTML Imports, which can take advantage of the browser’s background HTML parser). No pixels go on screen that you can’t use. Additional work here is chunked and stays interactive. We’re interactive on a real mobile device at 1.75seconds. 1.3s of JavaScript but it’s all broken up. After that it all works.
 
@@ -290,7 +290,7 @@ This builds on some of the thinking we talked about earlier with route-chunking.
 
 **tl;dr: Webpack’s require.ensure() with an async ‘getComponent’ and React Router are the lowest friction paths to a PRPL-style performance pattern**
 
-![](image-14)
+![][image-14]
 
 A big part of PRPL is turning the JS bundling mindset upside down and delivering resources as close to the granularity in which they are authored as possible (at least in terms of functionally independent modules). With Webpack, this is all about route-chunking which we’ve already covered.
 
@@ -298,7 +298,7 @@ Push critical resources for the initial route. Ideally, using [HTTP/2 Server Pus
 
 See this production waterfall by Flipkart of their before/after wins:
 
-![](image-15)
+![][image-15]
 
 Webpack has support for H/2 in the form of [AggressiveSplittingPlugin](60).
 
@@ -393,7 +393,7 @@ _With thanks to Gray Norton, Sean Larkin, Sunil Pai, Max Stoiber, Simon Boudrias
 
 See the Pen [SNOW GLOBE](74) by noname ([@al-ro](75)) on [CodePen](76).
 
- ![Elva dressed as a fairy](image-16)
+ ![Elva dressed as a fairy][image-16]
 
 
 [image-1]: https://cdn-images-1.medium.com/max/2000/0*KlJk2hhZl3wyn6E4.
