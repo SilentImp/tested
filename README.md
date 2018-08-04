@@ -2,7 +2,7 @@ See the Pen <a href='https://codepen.io/Uberche/pen/yqVgqE/'>Day 8: Metaballs</a
 
 See the Pen [Day 8: Metaballs](1) by Ethan ([@Uberche](2)) on [CodePen](3).
 
-![](image-1)
+![][image-1]
 
 It’s always important to measure and then optimize. Lighthouse’s load performance audits look at:
 
