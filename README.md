@@ -7,7 +7,6 @@
   allowtransparency='true' 
   allowfullscreen='true' 
   style='width: 100%;'>
-  
   See the Pen <a href='https://codepen.io/Uberche/pen/yqVgqE/'>Day 8: Metaballs</a> by Ethan (<a href='https://codepen.io/Uberche'>@Uberche</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
 
