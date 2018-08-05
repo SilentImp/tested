@@ -1,6 +1,6 @@
-<iframe src="https://codepen.io/Uberche/embed/yqVgqE/?height=265&theme-id=0&default-tab=css,result&embed-version=2"></iframe>
-
-See the Pen <a href='https://codepen.io/Uberche/pen/yqVgqE/'>Day 8: Metaballs</a> by Ethan (<a href='https://codepen.io/Uberche'>@Uberche</a>) on <a href='https://codepen.io'>CodePen</a>.
+<iframe src="https://mdn-samples.mozilla.org/snippets/html/iframe-simple-contents.html" title="iframe example 1" width="400" height="300">
+  <p>Your browser does not support iframes.</p>
+</iframe>
 
 See the Pen [Day 8: Metaballs](1) by Ethan ([@Uberche](2)) on [CodePen](3).
 
