@@ -393,11 +393,15 @@ _With thanks to Gray Norton, Sean Larkin, Sunil Pai, Max Stoiber, Simon Boudrias
 
 [codepen=//codepen.io/al-ro/pen/XBXWjm?default-tab=js%2Cresult&embed-version=2&pen-title=SNOW%20GLOBE&slug-hash=XBXWjm&theme-id=0&user=al-ro]
 
- <picture><source srcset="mdn-logo-wide.png" media="(min-width: 600px)"> <source srcset="mdn-logo-short.png" media="(max-width: 600px)"> <img srcset="elva-fairy-320w.jpg 320w,
+ <picture>
+   <source srcset="mdn-logo-wide.png" media="(min-width: 600px)">
+   <source srcset="mdn-logo-short.png" media="(max-width: 600px)">
+   <img srcset="elva-fairy-320w.jpg 320w,
              elva-fairy-480w.jpg 480w,
              elva-fairy-800w.jpg 800w" sizes="(max-width: 320px) 280px,
             (max-width: 480px) 440px,
-            800px" src="elva-fairy-800w.jpg" alt="Elva dressed as a fairy"> </picture>
+            800px" src="elva-fairy-800w.jpg" alt="Elva dressed as a fairy">
+</picture>
 
 
 [image-1]: https://cdn-images-1.medium.com/max/2000/0*KlJk2hhZl3wyn6E4.
