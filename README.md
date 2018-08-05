@@ -1,4 +1,4 @@
-\[ !\[Watch the video\](1) \](http://youtu.be/vt5fpE0bzSY) See the Pen [Day 8: Metaballs](2) by Ethan ([@Uberche](3)) on [CodePen](4).
+[![Watch the video](1)](http://youtu.be/vt5fpE0bzSY) See the Pen [Day 8: Metaballs](2) by Ethan ([@Uberche](3)) on [CodePen](4).
 
 [codepen=//codepen.io/Uberche/pen/yqVgqE?default-tab=css%2Cresult&pen-title=Day%208%3A%20Metaballs&slug-hash=yqVgqE&theme-id=0&user=Uberche]
 
