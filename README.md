@@ -1,3 +1,16 @@
+<iframe 
+  height='265' 
+  scrolling='no' 
+  title='Day 8: Metaballs' 
+  src='//codepen.io/Uberche/embed/yqVgqE/?height=265&theme-id=0&default-tab=css,result&embed-version=2' 
+  frameborder='no' 
+  allowtransparency='true' 
+  allowfullscreen='true' 
+  style='width: 100%;'>
+  
+  See the Pen <a href='https://codepen.io/Uberche/pen/yqVgqE/'>Day 8: Metaballs</a> by Ethan (<a href='https://codepen.io/Uberche'>@Uberche</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+
 See the Pen <a href='https://codepen.io/Uberche/pen/yqVgqE/'>Day 8: Metaballs</a> by Ethan (<a href='https://codepen.io/Uberche'>@Uberche</a>) on <a href='https://codepen.io'>CodePen</a>.
 
 See the Pen [Day 8: Metaballs](1) by Ethan ([@Uberche](2)) on [CodePen](3).
@@ -77,29 +90,29 @@ When your code needs something, Webpack makes a JSONP call to fetch it from the 
 
 Webpack 2 supports [automatic code-splitting with React Router](21) as it can treat System.import calls for modules as import statements, bundling imported filed and their dependencies together. Dependencies won’t collide with the initial entry in your Webpack configuration.
 
-import App from '../containers/App';
+      import App from '../containers/App';
 
-function errorLoading(err) {  
-  console.error('Lazy-loading failed', err);  
-}
+      function errorLoading(err) {  
+        console.error('Lazy-loading failed', err);  
+      }
 
-function loadRoute(cb) {  
-  return (module) => cb(null, module.default);  
-}  
-export default {  
-  component: App,  
-  childRoutes: \[  
-    // ...  
-    {  
-      path: 'booktour',  
-      getComponent(location, cb) {  
-        System.import('../pages/BookTour')  
-          .then(loadRoute(cb))  
-          .catch(errorLoading);  
+      function loadRoute(cb) {  
+        return (module) => cb(null, module.default);  
       }  
-    }  
-  \]  
-};
+      export default {  
+        component: App,  
+        childRoutes: \[  
+          // ...  
+          {  
+            path: 'booktour',  
+            getComponent(location, cb) {  
+              System.import('../pages/BookTour')  
+                .then(loadRoute(cb))  
+                .catch(errorLoading);  
+            }  
+          }  
+        \]  
+      };
 
 Before we continue, one optional addition to your setup is [<link rel=”preload”>](22) from [Resource Hints](23). This gives us a way to declaratively fetch resources without executing them. Preload can be leveraged for preloading Webpack chunks for routes users _are likely_ to navigate to so the cache is already primed with them and they’re instantly available for instantiation.
 
@@ -304,19 +317,19 @@ Webpack has support for H/2 in the form of [AggressiveSplittingPlugin](60).
 
 AggressiveSplittingPlugin splits every chunk until it reaches the specified maxSize as we can see with a short example below:
 
-module.exports = {  
-    entry: "./example",  
-    output: {  
-        path: path.join(__dirname, "js"),  
-        filename: "\[chunkhash\].js",  
-        chunkFilename: "\[chunkhash\].js"  
-    },  
-    plugins: \[  
-        new webpack.optimize.AggressiveSplittingPlugin({  
-            minSize: 30000,  
-            maxSize: 50000  
-        }),  
-// ...
+      module.exports = {  
+          entry: "./example",  
+          output: {  
+              path: path.join(__dirname, "js"),  
+              filename: "\[chunkhash\].js",  
+              chunkFilename: "\[chunkhash\].js"  
+          },  
+          plugins: \[  
+              new webpack.optimize.AggressiveSplittingPlugin({  
+                  minSize: 30000,  
+                  maxSize: 50000  
+              }),  
+      // ...
 
 See the official [plugin page](61) with examples for more details. [Lessons learned experimenting with HTTP/2 Push](62) and [Real World HTTP/2](63) are also worth a read.
 
